@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aiam Airron Roxas — General / Administrative Virtual Assistant</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#0F172A',
+                            800: '#1E293B',
+                            700: '#334155',
+                        },
+                        accent: {
+                            blue: '#2563EB',
+                            light: '#EFF6FF',
+                        },
+                        surface: {
+                            bg: '#F8FAFC',
+                            card: '#FFFFFF',
+                            border: '#E2E8F0',
+                            muted: '#64748B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC;
+            color: #334155;
+        }
+
+        /* Hero subtle grid background */
+        .hero-grid-bg {
+            background-image: linear-gradient(to right, rgba(226, 232, 240, 0.4) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(226, 232, 240, 0.4) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Glassmorphism navigation bar */
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Smooth scroll margin offset for sticky header */
+        section {
+            scroll-margin-top: 90px;
+        }
+
+        /* Active nav highlight styling */
+        .nav-link.active {
+            color: #2563EB;
+            font-weight: 600;
+        }
+
+        /* Justified text formatting */
+        p.text-justify, .text-justify {
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+        }
+
+        /* Animated floating effect for Hero Art Box */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate-float {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+
+        /* Smooth reveal-on-scroll animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Interactive Card Elevate Hover */
+        .hover-card {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+            border-color: rgba(37, 99, 235, 0.3);
+        }
+    </style>
+</head>
+<body class="antialiased text-slate-700 bg-surface-bg selection:bg-accent-blue selection:text-white">
+
+    <!-- NAVIGATION BAR -->
+    <header class="fixed top-0 left-0 w-full z-50 nav-glass border-b border-surface-border transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-navy-900 text-white flex items-center justify-center font-bold text-sm tracking-wider shadow-sm group-hover:bg-accent-blue transition-colors">
+                    AR
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-navy-900 text-base leading-tight">Aiam Airron Roxas</span>
+                    <span class="text-[10px] font-semibold tracking-widest text-surface-muted uppercase">Virtual Assistant</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-8">
+                <a href="#home" class="nav-link text-sm font-medium text-slate-600 hover:text-accent-blue transition-colors">Home</a>
+                <a href="#about" class="nav-link text-sm font-medium text-slate-600 hover:text-accent-blue transition-colors">About</a>
+                <a href="#services" class="nav-link text-sm font-medium text-slate-600 hover:text-accent-blue transition-colors">Services</a>
+                <a href="#skills" class="nav-link text-sm font-medium text-slate-600 hover:text-accent-blue transition-colors">Skills</a>
+                <a href="#portfolio" class="nav-link text-sm font-medium text-slate-600 hover:text-accent-blue transition-colors">Portfolio</a>
+                <a href="#certifications" class="nav-link text-sm font-medium text-slate-600 hover:text-accent-blue transition-colors">Certifications</a>
+                <a href="#contact" class="nav-link text-sm font-medium text-slate-600 hover:text-accent-blue transition-colors">Contact</a>
+            </nav>
+
+            <!-- CTA Header Button -->
+            <div class="hidden lg:flex items-center">
+                <a href="#contact" class="px-6 py-2.5 rounded-xl bg-navy-900 hover:bg-navy-800 text-white font-semibold text-sm transition-all duration-200 shadow-sm hover:shadow active:scale-95">
+                    Hire Me
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-none" aria-label="Toggle Navigation">
+                <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden border-b border-surface-border bg-white px-6 py-5 shadow-xl transition-all">
+            <nav class="flex flex-col gap-4">
+                <a href="#home" class="mobile-nav-link text-base font-medium text-slate-700 hover:text-accent-blue">Home</a>
+                <a href="#about" class="mobile-nav-link text-base font-medium text-slate-700 hover:text-accent-blue">About</a>
+                <a href="#services" class="mobile-nav-link text-base font-medium text-slate-700 hover:text-accent-blue">Services</a>
+                <a href="#skills" class="mobile-nav-link text-base font-medium text-slate-700 hover:text-accent-blue">Skills</a>
+                <a href="#portfolio" class="mobile-nav-link text-base font-medium text-slate-700 hover:text-accent-blue">Portfolio</a>
+                <a href="#certifications" class="mobile-nav-link text-base font-medium text-slate-700 hover:text-accent-blue">Certifications</a>
+                <a href="#contact" class="mobile-nav-link text-base font-medium text-slate-700 hover:text-accent-blue">Contact</a>
+                <div class="pt-2 border-t border-slate-100">
+                    <a href="#contact" class="mobile-nav-link block text-center w-full py-3 rounded-xl bg-navy-900 text-white font-semibold text-sm">
+                        Hire Me
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-20">
+
+        <!-- SECTION 1: HERO SECTION -->
+        <section id="home" class="hero-grid-bg relative pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    
+                    <!-- Left Hero Content -->
+                    <div class="lg:col-span-6 flex flex-col items-start reveal">
+                        <!-- Category Badge -->
+                        <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase bg-blue-50 text-accent-blue border border-blue-200/60 mb-6">
+                            GENERAL / ADMINISTRATIVE VIRTUAL ASSISTANT
+                        </span>
+
+                        <!-- Main Headline -->
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-navy-900 tracking-tight leading-[1.15] mb-6">
+                            Reliable Administrative Support. Powered by Technology.
+                        </h1>
+
+                        <!-- Subheadline (Justified text) -->
+                        <p class="text-lg sm:text-xl text-surface-muted font-normal leading-relaxed mb-8 max-w-2xl text-justify">
+                            Hi, I'm Aiam — a Computer Engineering graduate transitioning into General Virtual Assistance. I help businesses stay organized through reliable administrative support, technical skills, and attention to detail.
+                        </p>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-10">
+                            <a href="#portfolio" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-navy-900 hover:bg-navy-800 text-white font-semibold text-base transition-all shadow-md hover:shadow-xl active:scale-95 hover:-translate-y-0.5">
+                                Explore My Portfolio
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </a>
+                            <a href="https://drive.google.com/file/d/13QpBavSZ_6zTF6uogWMcSQY2njkxPjrI/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-navy-900 font-semibold text-base border border-surface-border shadow-sm transition-all hover:border-slate-300 active:scale-95 hover:-translate-y-0.5">
+                                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                                Download Resume
+                            </a>
+                        </div>
+
+                        <!-- Status Indicator -->
+                        <div class="flex items-center gap-2.5 text-xs sm:text-sm font-medium text-surface-muted">
+                            <span class="relative flex h-2.5 w-2.5">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                            </span>
+                            <span>Open to remote opportunities</span>
+                            <span class="text-slate-300">•</span>
+                            <a href="mailto:aiamroxas.cpe@gmail.com" class="hover:text-accent-blue transition-colors underline decoration-slate-300 underline-offset-4">aiamroxas.cpe@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <!-- Right Isometric Art Box (Enlarged & Floating) -->
+                    <div class="lg:col-span-6 flex flex-col items-center reveal">
+                        <div class="w-full bg-white/80 backdrop-blur-md rounded-3xl p-6 sm:p-10 border border-surface-border/80 shadow-2xl shadow-slate-300/60 mb-6 relative overflow-hidden group animate-float hover:shadow-accent-blue/10 transition-all duration-500">
+                            <!-- Abstract Geometric 3D Art SVG Container (Sized bigger) -->
+                            <div class="w-full aspect-[4/3] bg-gradient-to-b from-slate-50 to-slate-100/70 rounded-2xl flex items-center justify-center p-6 relative border border-slate-100/80 shadow-inner">
+                                <svg viewBox="0 0 400 320" class="w-full h-full max-w-[420px] drop-shadow-2xl transition-transform duration-700 ease-out group-hover:scale-105" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Isometric Cubes Composition -->
+                                    <g transform="translate(0, 0)">
+                                        <!-- Central Base Cube -->
+                                        <path d="M200 80 L285 128 L285 225 L200 177 Z" fill="#1E293B"/>
+                                        <path d="M200 80 L115 128 L115 225 L200 177 Z" fill="#334155"/>
+                                        <path d="M200 80 L285 128 L200 175 L115 128 Z" fill="#475569"/>
+
+                                        <!-- Front Offset Main Cube -->
+                                        <path d="M200 150 L285 198 L285 295 L200 247 Z" fill="#0F172A"/>
+                                        <path d="M200 150 L115 198 L115 295 L200 247 Z" fill="#1E293B"/>
+                                        <path d="M200 150 L285 198 L200 245 L115 198 Z" fill="#64748B"/>
+
+                                        <!-- Top Accent Small Floating Cube -->
+                                        <path d="M270 45 L292 57 L292 81 L270 69 Z" fill="#1D4ED8"/>
+                                        <path d="M270 45 L248 57 L248 81 L270 69 Z" fill="#2563EB"/>
+                                        <path d="M270 45 L292 57 L270 69 L248 57 Z" fill="#3B82F6"/>
+
+                                        <!-- Left Floating Gray Cube -->
+                                        <path d="M130 95 L152 107 L152 131 L130 119 Z" fill="#475569"/>
+                                        <path d="M130 95 L108 107 L108 131 L130 119 Z" fill="#64748B"/>
+                                        <path d="M130 95 L152 107 L130 119 L108 107 Z" fill="#94A3B8"/>
+
+                                        <!-- Bottom Floating Mini Accent Cube -->
+                                        <path d="M200 265 L214 273 L214 288 L200 280 Z" fill="#1D4ED8"/>
+                                        <path d="M200 265 L186 273 L186 288 L200 280 Z" fill="#2563EB"/>
+                                        <path d="M200 265 L214 273 L200 280 L186 273 Z" fill="#60A5FA"/>
+
+                                        <!-- Right Mid Accent Cube -->
+                                        <path d="M325 150 L339 158 L339 173 L325 165 Z" fill="#1D4ED8"/>
+                                        <path d="M325 150 L311 158 L311 173 L325 165 Z" fill="#2563EB"/>
+                                        <path d="M325 150 L339 158 L325 165 L311 158 Z" fill="#60A5FA"/>
+
+                                        <!-- Connecting Dynamic Lines -->
+                                        <line x1="270" y1="57" x2="270" y2="105" stroke="#2563EB" stroke-width="2" stroke-dasharray="3 3"/>
+                                        <line x1="130" y1="131" x2="130" y2="175" stroke="#94A3B8" stroke-width="2" stroke-dasharray="3 3"/>
+                                        <line x1="325" y1="165" x2="285" y2="185" stroke="#2563EB" stroke-width="2"/>
+                                        <line x1="200" y1="245" x2="200" y2="265" stroke="#2563EB" stroke-width="2"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- 3 Quick Info Cards Row -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 w-full">
+                            <div class="bg-white p-4 rounded-2xl border border-surface-border flex items-center gap-3 shadow-sm hover-card">
+                                <div class="w-10 h-10 rounded-xl bg-blue-50 text-accent-blue flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+                                </div>
+                                <div class="text-xs">
+                                    <p class="font-bold text-navy-900 leading-tight">BS Computer</p>
+                                    <p class="text-surface-muted leading-tight">Engineering</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-4 rounded-2xl border border-surface-border flex items-center gap-3 shadow-sm hover-card">
+                                <div class="w-10 h-10 rounded-xl bg-blue-50 text-accent-blue flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                </div>
+                                <div class="text-xs">
+                                    <p class="font-bold text-navy-900 leading-tight">Nestlé PH IT</p>
+                                    <p class="text-surface-muted leading-tight">Internship</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-4 rounded-2xl border border-surface-border flex items-center gap-3 shadow-sm hover-card">
+                                <div class="w-10 h-10 rounded-xl bg-blue-50 text-accent-blue flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                </div>
+                                <div class="text-xs">
+                                    <p class="font-bold text-navy-900 leading-tight">Bulacan,</p>
+                                    <p class="text-surface-muted leading-tight">Philippines</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 2: ABOUT ME SECTION -->
+        <section id="about" class="py-20 bg-white border-t border-b border-surface-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start reveal">
+                    
+                    <!-- Title Column -->
+                    <div class="lg:col-span-5">
+                        <span class="text-xs font-bold uppercase tracking-widest text-accent-blue block mb-3">ABOUT ME</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight leading-tight">
+                            A technical foundation, applied to organized support work.
+                        </h2>
+                    </div>
+
+                    <!-- Paragraph Content & Summary Grid Column (Justified Text) -->
+                    <div class="lg:col-span-7 flex flex-col gap-8">
+                        <div class="text-slate-600 text-base leading-relaxed space-y-4 text-justify">
+                            <p>
+                                I'm a Bachelor of Science in Computer Engineering graduate from Bulacan State University, graduating in June 2026. Alongside my studies, I completed an Information Technology internship at Nestlé Philippines from June to December 2025.
+                            </p>
+                            <p>
+                                That internship gave me hands-on experience in computer and software troubleshooting, hardware setup, software installation and configuration, IT help desk and user support, documentation and data entry, asset and inventory management, network troubleshooting, and daily use of Microsoft Office and Google Workspace.
+                            </p>
+                            <p>
+                                I'm now transitioning into General / Administrative Virtual Assistance, bringing the same detail-oriented, systems-first approach to remote administrative work. I value clear documentation, consistent organization, and follow-through — and I'm committed to learning each client's processes properly.
+                            </p>
+                        </div>
+
+                        <!-- 2x2 Info Grid Card -->
+                        <div class="bg-surface-bg rounded-2xl border border-surface-border p-6 grid grid-cols-1 sm:grid-cols-2 gap-6 shadow-xs hover-card">
+                            <div class="border-b sm:border-b-0 sm:border-r border-slate-200 pb-4 sm:pb-0 sm:pr-4">
+                                <span class="text-[11px] font-bold tracking-widest uppercase text-surface-muted block mb-1">EDUCATION</span>
+                                <p class="text-sm font-semibold text-navy-900">BS Computer Engineering, Bulacan State University — June 2026</p>
+                            </div>
+                            <div class="pb-4 sm:pb-0">
+                                <span class="text-[11px] font-bold tracking-widest uppercase text-surface-muted block mb-1">INTERNSHIP</span>
+                                <p class="text-sm font-semibold text-navy-900">Information Technology Intern, Nestlé Philippines — June to December 2025</p>
+                            </div>
+                            <div class="border-t border-slate-200 pt-4 border-b sm:border-b-0 sm:border-r sm:pr-4">
+                                <span class="text-[11px] font-bold tracking-widest uppercase text-surface-muted block mb-1">FOCUS</span>
+                                <p class="text-sm font-semibold text-navy-900">General / Administrative Virtual Assistance</p>
+                            </div>
+                            <div class="border-t border-slate-200 pt-4">
+                                <span class="text-[11px] font-bold tracking-widest uppercase text-surface-muted block mb-1">LOCATION</span>
+                                <p class="text-sm font-semibold text-navy-900">Santa Maria, Bulacan, Philippines</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 3: SERVICES SECTION -->
+        <section id="services" class="py-20 bg-surface-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Header -->
+                <div class="mb-12 max-w-3xl reveal">
+                    <span class="text-xs font-bold uppercase tracking-widest text-accent-blue block mb-3">SERVICES</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight mb-4">
+                        How I can support your business
+                    </h2>
+                    <p class="text-surface-muted text-base">
+                        Services I am prepared to offer as I begin my virtual assistance practice.
+                    </p>
+                </div>
+
+                <!-- Services Grid (5 Cards + 1 Dark Availability Card) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Card 1 -->
+                    <div class="bg-white rounded-2xl p-7 border border-surface-border shadow-sm flex flex-col justify-between hover-card reveal">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-blue-50 text-accent-blue flex items-center justify-center mb-6">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy-900 mb-4">Administrative Support</h3>
+                            <ul class="space-y-2.5 text-slate-600 text-sm">
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Data entry</li>
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Document formatting</li>
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>File organization</li>
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Record keeping</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-white rounded-2xl p-7 border border-surface-border shadow-sm flex flex-col justify-between hover-card reveal">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-blue-50 text-accent-blue flex items-center justify-center mb-6">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy-900 mb-4">Email & Calendar Management</h3>
+                            <ul class="space-y-2.5 text-slate-600 text-sm">
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Email organization</li>
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Calendar management</li>
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Appointment scheduling</li>
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Basic correspondence</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-white rounded-2xl p-7 border border-surface-border shadow-sm flex flex-col justify-between hover-card reveal">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-blue-50 text-accent-blue flex items-center justify-center mb-6">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy-900 mb-4">Data & Spreadsheet Management</h3>
+                            <ul class="space-y-2.5 text-slate-600 text-sm">
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Spreadsheet organization</li>
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Data collection</li>
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Data cleaning</li>
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Report preparation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="bg-white rounded-2xl p-7 border border-surface-border shadow-sm flex flex-col justify-between hover-card reveal">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-blue-50 text-accent-blue flex items-center justify-center mb-6">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 002-2V5a2 2 0 002-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 00-2 2z"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy-900 mb-4">Document Management</h3>
+                            <ul class="space-y-2.5 text-slate-600 text-sm">
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Document creation</li>
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Formatting</li>
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Digital file organization</li>
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>PDF management</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="bg-white rounded-2xl p-7 border border-surface-border shadow-sm flex flex-col justify-between hover-card reveal">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-blue-50 text-accent-blue flex items-center justify-center mb-6">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy-900 mb-4">General Virtual Assistance</h3>
+                            <ul class="space-y-2.5 text-slate-600 text-sm">
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Online research</li>
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Task organization</li>
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Administrative coordination</li>
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent-blue"></span>Everyday business support</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Dark Availability Callout -->
+                    <div class="bg-navy-900 rounded-2xl p-7 text-white shadow-xl flex flex-col justify-between hover-card reveal">
+                        <div>
+                            <span class="text-[11px] font-bold tracking-widest uppercase text-slate-400 block mb-3">AVAILABILITY</span>
+                            <h3 class="text-2xl font-bold text-white mb-4">Ready to support a team remotely.</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed mb-8 text-justify">
+                                Open to part-time, full-time, and project-based administrative support engagements.
+                            </p>
+                        </div>
+                        <a href="#contact" class="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-blue-300 transition-colors group">
+                            Get in touch
+                            <span class="group-hover:translate-x-1.5 transition-transform">→</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 4: SKILLS & TOOLS SECTION -->
+        <section id="skills" class="py-20 bg-white border-t border-surface-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Header -->
+                <div class="mb-12 max-w-3xl reveal">
+                    <span class="text-xs font-bold uppercase tracking-widest text-accent-blue block mb-3">SKILLS & TOOLS</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight mb-4">
+                        Software and skills I work with
+                    </h2>
+                    <p class="text-surface-muted text-base">
+                        Everyday tools for administrative, data, and technical work.
+                    </p>
+                </div>
+
+                <!-- 2x2 Skills Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    
+                    <!-- Microsoft Office -->
+                    <div class="bg-white rounded-2xl p-7 border border-surface-border shadow-sm hover-card reveal">
+                        <span class="text-[11px] font-bold tracking-widest uppercase text-surface-muted block mb-6">MICROSOFT OFFICE</span>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between py-2 border-b border-slate-100">
+                                <span class="text-sm font-semibold text-navy-900">Word</span>
+                                <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-blue-50 text-accent-blue">ADVANCED</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2 border-b border-slate-100">
+                                <span class="text-sm font-semibold text-navy-900">Excel</span>
+                                <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-blue-50 text-accent-blue">ADVANCED</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2">
+                                <span class="text-sm font-semibold text-navy-900">PowerPoint</span>
+                                <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-blue-50 text-accent-blue">ADVANCED</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Google Workspace -->
+                    <div class="bg-white rounded-2xl p-7 border border-surface-border shadow-sm hover-card reveal">
+                        <span class="text-[11px] font-bold tracking-widest uppercase text-surface-muted block mb-6">GOOGLE WORKSPACE</span>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between py-1.5 border-b border-slate-100">
+                                <span class="text-sm font-semibold text-navy-900">Docs</span>
+                                <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-blue-50 text-accent-blue">ADVANCED</span>
+                            </div>
+                            <div class="flex items-center justify-between py-1.5 border-b border-slate-100">
+                                <span class="text-sm font-semibold text-navy-900">Sheets</span>
+                                <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-blue-50 text-accent-blue">ADVANCED</span>
+                            </div>
+                            <div class="flex items-center justify-between py-1.5 border-b border-slate-100">
+                                <span class="text-sm font-semibold text-navy-900">Drive</span>
+                                <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-blue-50 text-accent-blue">ADVANCED</span>
+                            </div>
+                            <div class="flex items-center justify-between py-1.5 border-b border-slate-100">
+                                <span class="text-sm font-semibold text-navy-900">Gmail</span>
+                                <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-600">BASIC</span>
+                            </div>
+                            <div class="flex items-center justify-between py-1.5">
+                                <span class="text-sm font-semibold text-navy-900">Google Calendar</span>
+                                <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-600">BASIC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Administrative Skills -->
+                    <div class="bg-white rounded-2xl p-7 border border-surface-border shadow-sm hover-card reveal">
+                        <span class="text-[11px] font-bold tracking-widest uppercase text-surface-muted block mb-6">ADMINISTRATIVE SKILLS</span>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between py-2 border-b border-slate-100">
+                                <span class="text-sm font-semibold text-navy-900">Data Entry & Record Keeping</span>
+                                <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-blue-50 text-accent-blue">ADVANCED</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2 border-b border-slate-100">
+                                <span class="text-sm font-semibold text-navy-900">Professional Communication</span>
+                                <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700">INTERMEDIATE</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2">
+                                <span class="text-sm font-semibold text-navy-900">Administrative Assistance</span>
+                                <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-600">BASIC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Technical Skills -->
+                    <div class="bg-white rounded-2xl p-7 border border-surface-border shadow-sm hover-card reveal">
+                        <span class="text-[11px] font-bold tracking-widest uppercase text-surface-muted block mb-6">TECHNICAL SKILLS</span>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between py-2 border-b border-slate-100">
+                                <span class="text-sm font-semibold text-navy-900">Computer & Software Troubleshooting</span>
+                                <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-blue-50 text-accent-blue">ADVANCED</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2 border-b border-slate-100">
+                                <span class="text-sm font-semibold text-navy-900">Hardware Setup & Software Installation</span>
+                                <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-blue-50 text-accent-blue">ADVANCED</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2">
+                                <span class="text-sm font-semibold text-navy-900">Typing Speed</span>
+                                <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 font-mono">95 WPM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Additional Tools Outer Box -->
+                <div class="bg-surface-bg rounded-2xl p-6 border border-surface-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 reveal">
+                    <div>
+                        <span class="text-[11px] font-bold tracking-widest uppercase text-navy-900 block mb-1">ADDITIONAL TOOLS</span>
+                        <p class="text-xs text-surface-muted">Tools I am currently exploring and familiarizing myself with.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-medium text-slate-700 shadow-xs hover:border-accent-blue hover:text-accent-blue transition-colors cursor-default">Notion</span>
+                        <span class="px-4 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-medium text-slate-700 shadow-xs hover:border-accent-blue hover:text-accent-blue transition-colors cursor-default">Canva</span>
+                        <span class="px-4 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-medium text-slate-700 shadow-xs hover:border-accent-blue hover:text-accent-blue transition-colors cursor-default">Asana</span>
+                        <span class="px-4 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-medium text-slate-700 shadow-xs hover:border-accent-blue hover:text-accent-blue transition-colors cursor-default">Zapier</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- SECTION 5: PORTFOLIO / SELECTED PROJECTS SECTION -->
+        <section id="portfolio" class="py-20 bg-surface-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Header -->
+                <div class="mb-12 max-w-3xl reveal">
+                    <span class="text-xs font-bold uppercase tracking-widest text-accent-blue block mb-3">PORTFOLIO</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight mb-4">
+                        Selected Projects
+                    </h2>
+                    <p class="text-surface-muted text-base">
+                        Practical sample projects demonstrating my administrative, organizational, and technical capabilities.
+                    </p>
+                </div>
+
+                <!-- Projects Grid (5 Cards + 1 Disclaimer Box) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    
+                    <!-- Project 01 -->
+                    <div class="bg-white rounded-3xl overflow-hidden border border-surface-border shadow-sm hover-card flex flex-col group reveal">
+                        <!-- Custom SVG Banner Header -->
+                        <div class="bg-amber-50/50 p-6 sm:p-8 flex items-center justify-center border-b border-slate-100 relative min-h-[200px] overflow-hidden">
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white text-[11px] font-bold text-slate-600 uppercase tracking-wider border border-slate-200">PROJECT 01</span>
+                            <svg viewBox="0 0 320 160" class="w-full max-w-[260px] h-auto drop-shadow-md group-hover:scale-105 transition-transform duration-500">
+                                <rect x="20" y="20" width="280" height="120" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+                                <rect x="35" y="35" width="70" height="25" rx="6" fill="#0F172A"/>
+                                <rect x="115" y="35" width="70" height="25" rx="6" fill="#E2E8F0"/>
+                                <rect x="195" y="35" width="90" height="25" rx="6" fill="#2563EB"/>
+                                <rect x="35" y="70" width="115" height="20" rx="4" fill="#F1F5F9"/>
+                                <rect x="160" y="70" width="125" height="20" rx="4" fill="#F1F5F9"/>
+                                <rect x="35" y="100" width="250" height="20" rx="4" fill="#F8FAFC"/>
+                                <path d="M40 120 L100 85 L160 105 L260 50" stroke="#2563EB" stroke-width="3" fill="none" stroke-linecap="round"/>
+                                <circle cx="260" cy="50" r="4" fill="#2563EB"/>
+                            </svg>
+                        </div>
+                        <div class="p-7 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-navy-900 mb-3">Administrative Task & Project Tracker</h3>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-6 text-justify">
+                                    A Google Sheets-based task management system for organizing administrative activities, tracking deadlines, monitoring priorities, and visualizing task progress through an interactive dashboard.
+                                </p>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-surface-muted block mb-3">GOOGLE SHEETS</span>
+                                <a href="https://drive.google.com/drive/folders/1EynRwai0rpdDFSrLr48SsztyPpZvUYTf?usp=drive_link" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-bold text-accent-blue hover:text-blue-700 transition-colors">
+                                    View Project ↗
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 02 -->
+                    <div class="bg-white rounded-3xl overflow-hidden border border-surface-border shadow-sm hover-card flex flex-col group reveal">
+                        <!-- Custom SVG Banner Header -->
+                        <div class="bg-amber-50/50 p-6 sm:p-8 flex items-center justify-center border-b border-slate-100 relative min-h-[200px] overflow-hidden">
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white text-[11px] font-bold text-slate-600 uppercase tracking-wider border border-slate-200">PROJECT 02</span>
+                            <svg viewBox="0 0 320 160" class="w-full max-w-[260px] h-auto drop-shadow-md group-hover:scale-105 transition-transform duration-500">
+                                <rect x="30" y="25" width="260" height="110" rx="8" fill="#FFFFFF" stroke="#0F172A" stroke-width="3"/>
+                                <rect x="30" y="25" width="260" height="24" fill="#0F172A"/>
+                                <line x1="30" y1="75" x2="290" y2="75" stroke="#E2E8F0" stroke-width="2"/>
+                                <line x1="30" y1="100" x2="290" y2="100" stroke="#E2E8F0" stroke-width="2"/>
+                                <line x1="110" y1="49" x2="110" y2="135" stroke="#E2E8F0" stroke-width="2"/>
+                                <line x1="190" y1="49" x2="190" y2="135" stroke="#E2E8F0" stroke-width="2"/>
+                                <rect x="33" y="77" width="254" height="21" fill="#2563EB" opacity="0.9"/>
+                            </svg>
+                        </div>
+                        <div class="p-7 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-navy-900 mb-3">Data Entry & Record Management</h3>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-6 text-justify">
+                                    A structured spreadsheet project demonstrating organized data entry, record management, data validation, and sorting and filtering.
+                                </p>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-surface-muted block mb-3">GOOGLE SHEETS / MICROSOFT EXCEL</span>
+                                <a href="https://drive.google.com/drive/folders/1GKuHsCrqL_QdMCz8fibuOTRj6GchLm8d?usp=drive_link" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-bold text-accent-blue hover:text-blue-700 transition-colors">
+                                    View Project ↗
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 03 -->
+                    <div class="bg-white rounded-3xl overflow-hidden border border-surface-border shadow-sm hover-card flex flex-col group reveal">
+                        <!-- Custom SVG Banner Header -->
+                        <div class="bg-amber-50/50 p-6 sm:p-8 flex items-center justify-center border-b border-slate-100 relative min-h-[200px] overflow-hidden">
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white text-[11px] font-bold text-slate-600 uppercase tracking-wider border border-slate-200">PROJECT 03</span>
+                            <svg viewBox="0 0 320 160" class="w-full max-w-[260px] h-auto drop-shadow-md group-hover:scale-105 transition-transform duration-500">
+                                <rect x="20" y="25" width="160" height="110" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+                                <g fill="#1E293B">
+                                    <rect x="35" y="40" width="18" height="18" rx="4"/>
+                                    <rect x="62" y="40" width="18" height="18" rx="4"/>
+                                    <rect x="89" y="40" width="18" height="18" rx="4"/>
+                                    <rect x="116" y="40" width="18" height="18" rx="4"/>
+                                    <rect x="143" y="40" width="18" height="18" rx="4" fill="#2563EB"/>
+                                    <rect x="35" y="68" width="18" height="18" rx="4"/>
+                                    <rect x="62" y="68" width="18" height="18" rx="4" fill="#2563EB"/>
+                                    <rect x="89" y="68" width="18" height="18" rx="4"/>
+                                    <rect x="116" y="68" width="18" height="18" rx="4"/>
+                                    <rect x="143" y="68" width="18" height="18" rx="4"/>
+                                </g>
+                                <rect x="195" y="45" width="105" height="70" rx="6" fill="#0F172A"/>
+                                <path d="M195 45 L247 80 L300 45" stroke="#FFFFFF" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <div class="p-7 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-navy-900 mb-3">Executive Calendar & Email Management</h3>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-6 text-justify">
+                                    A sample administrative workflow demonstrating calendar organization, appointment scheduling, email categorization, and follow-up management.
+                                </p>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-surface-muted block mb-3">GOOGLE CALENDAR / GMAIL</span>
+                                <a href="https://drive.google.com/drive/folders/1UFfKqkl9Sb22nf1pol8i7s5PxXjWMQtN?usp=drive_link" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-bold text-accent-blue hover:text-blue-700 transition-colors">
+                                    View Project ↗
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 04 -->
+                    <div class="bg-white rounded-3xl overflow-hidden border border-surface-border shadow-sm hover-card flex flex-col group reveal">
+                        <!-- Custom SVG Banner Header -->
+                        <div class="bg-amber-50/50 p-6 sm:p-8 flex items-center justify-center border-b border-slate-100 relative min-h-[200px] overflow-hidden">
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white text-[11px] font-bold text-slate-600 uppercase tracking-wider border border-slate-200">PROJECT 04</span>
+                            <svg viewBox="0 0 320 160" class="w-full max-w-[260px] h-auto drop-shadow-md group-hover:scale-105 transition-transform duration-500">
+                                <g transform="rotate(-6 160 80)">
+                                    <rect x="110" y="20" width="100" height="120" rx="6" fill="#FFFFFF" stroke="#0F172A" stroke-width="2"/>
+                                </g>
+                                <g transform="rotate(3 160 80)">
+                                    <rect x="120" y="20" width="100" height="120" rx="6" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+                                    <rect x="135" y="35" width="70" height="8" rx="2" fill="#2563EB"/>
+                                    <rect x="135" y="50" width="50" height="6" rx="2" fill="#94A3B8"/>
+                                    <rect x="135" y="62" width="60" height="6" rx="2" fill="#94A3B8"/>
+                                    <rect x="140" y="95" width="10" height="25" fill="#2563EB"/>
+                                    <rect x="155" y="85" width="10" height="35" fill="#1D4ED8"/>
+                                    <rect x="170" y="75" width="10" height="45" fill="#0F172A"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="p-7 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-navy-900 mb-3">Business Documents & Reports</h3>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-6 text-justify">
+                                    A collection of sample business documents and reports demonstrating document formatting, professional presentation, and organized file management.
+                                </p>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-surface-muted block mb-3">MICROSOFT WORD / GOOGLE DOCS</span>
+                                <a href="https://drive.google.com/drive/folders/1JpZJnzIj-FObEdyNrJIACxGYJISrtyXl?usp=drive_link" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-bold text-accent-blue hover:text-blue-700 transition-colors">
+                                    View Project ↗
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 05 -->
+                    <div class="bg-white rounded-3xl overflow-hidden border border-surface-border shadow-sm hover-card flex flex-col group reveal">
+                        <!-- Custom SVG Banner Header -->
+                        <div class="bg-amber-50/50 p-6 sm:p-8 flex items-center justify-center border-b border-slate-100 relative min-h-[200px] overflow-hidden">
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white text-[11px] font-bold text-slate-600 uppercase tracking-wider border border-slate-200">PROJECT 05</span>
+                            <svg viewBox="0 0 320 160" class="w-full max-w-[260px] h-auto drop-shadow-md group-hover:scale-105 transition-transform duration-500">
+                                <g transform="rotate(12 160 80) scale(0.9)">
+                                    <rect x="30" y="20" width="260" height="120" rx="10" fill="#FFFFFF" stroke="#0F172A" stroke-width="2"/>
+                                    <path d="M50 110 Q 100 60, 150 90 T 250 40" stroke="#2563EB" stroke-width="4" fill="none"/>
+                                    <circle cx="250" cy="40" r="6" fill="#2563EB"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="p-7 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-navy-900 mb-3">Business Operations Dashboard</h3>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-6 text-justify">
+                                    A sample dashboard project demonstrating organized business information, data presentation, and operational monitoring.
+                                </p>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-surface-muted block mb-3">GOOGLE SHEETS</span>
+                                <a href="https://drive.google.com/drive/folders/1d8ulJbouaCa5G7ueOcRPO6Yt-NnstPMK?usp=drive_link" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-bold text-accent-blue hover:text-blue-700 transition-colors">
+                                    View Project ↗
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Note Disclaimer Card -->
+                    <div class="bg-navy-900 rounded-3xl p-8 text-white shadow-xl flex flex-col justify-center hover-card reveal">
+                        <span class="text-[11px] font-bold tracking-widest uppercase text-slate-400 block mb-4">NOTE</span>
+                        <h3 class="text-2xl font-bold text-white mb-4 leading-snug">
+                            All projects above are sample and practice work.
+                        </h3>
+                        <p class="text-slate-300 text-sm leading-relaxed text-justify">
+                            They were created to demonstrate process, formatting, and organization — not client engagements or delivered business results.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- SECTION 6: CERTIFICATIONS & EDUCATION SECTION -->
+        <section id="certifications" class="py-20 bg-white border-t border-surface-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Header -->
+                <div class="mb-12 max-w-3xl reveal">
+                    <span class="text-xs font-bold uppercase tracking-widest text-accent-blue block mb-3">CERTIFICATIONS & EDUCATION</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight mb-4">
+                        Credentials and academic background
+                    </h2>
+                </div>
+
+                <!-- Certifications Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    
+                    <!-- TESDA -->
+                    <div class="bg-white rounded-2xl p-7 border border-surface-border shadow-sm hover-card reveal">
+                        <div class="flex items-center gap-2 mb-6">
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span class="text-xs font-bold tracking-widest uppercase text-navy-900">TESDA</span>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="pl-3 border-l-2 border-slate-200">Microsoft Digital Literacy</li>
+                            <li class="pl-3 border-l-2 border-slate-200">Practicing Data Privacy in the Workplace</li>
+                            <li class="pl-3 border-l-2 border-slate-200">Performing Data Recording and Reporting</li>
+                        </ul>
+                    </div>
+
+                    <!-- ALISON -->
+                    <div class="bg-white rounded-2xl p-7 border border-surface-border shadow-sm hover-card reveal">
+                        <div class="flex items-center gap-2 mb-6">
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span class="text-xs font-bold tracking-widest uppercase text-navy-900">ALISON</span>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="pl-3 border-l-2 border-slate-200">Roles and Responsibilities of Virtual Assistants</li>
+                            <li class="pl-3 border-l-2 border-slate-200">Working as a Virtual Assistant</li>
+                            <li class="pl-3 border-l-2 border-slate-200">Virtual Assistant Professional Skills</li>
+                        </ul>
+                    </div>
+
+                    <!-- HUAWEI -->
+                    <div class="bg-white rounded-2xl p-7 border border-surface-border shadow-sm hover-card reveal">
+                        <div class="flex items-center gap-2 mb-6">
+                            <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span class="text-xs font-bold tracking-widest uppercase text-navy-900">HUAWEI</span>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="pl-3 border-l-2 border-slate-200">AI Basics: Overview of AI</li>
+                            <li class="pl-3 border-l-2 border-slate-200">HCIA-AI V4.0 Course</li>
+                            <li class="pl-3 border-l-2 border-slate-200">Development and Basic Concepts of Cloud Computing</li>
+                            <li class="pl-3 border-l-2 border-slate-200">HCCDA-Tech Essentials Course</li>
+                            <li class="pl-3 border-l-2 border-slate-200">Basics of Network Layer Protocols Micro Certification</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Education & Academic Awards Row -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 reveal">
+                    
+                    <!-- Education Dark Card -->
+                    <div class="lg:col-span-8 bg-navy-900 rounded-2xl p-7 text-white shadow-lg flex flex-col justify-between hover-card">
+                        <div>
+                            <div class="flex items-center gap-2 mb-4 text-slate-400">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+                                <span class="text-[11px] font-bold tracking-widest uppercase">EDUCATION</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-1">Bachelor of Science in Computer Engineering</h3>
+                            <p class="text-slate-300 text-base">Bulacan State University</p>
+                        </div>
+                        <div class="mt-6">
+                            <span class="inline-block text-xs font-bold tracking-widest uppercase text-slate-400">GRADUATING JUNE 2026</span>
+                        </div>
+                    </div>
+
+                    <!-- Academic Awards White Card -->
+                    <div class="lg:col-span-4 bg-white rounded-2xl p-7 border border-surface-border shadow-sm flex flex-col justify-center hover-card">
+                        <div class="flex items-center gap-2 mb-4 text-accent-blue">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                            <span class="text-[11px] font-bold tracking-widest uppercase text-navy-900">ACADEMIC AWARDS</span>
+                        </div>
+                        <ul class="space-y-2 text-sm font-semibold text-navy-900">
+                            <li>Magna Cum Laude</li>
+                            <li class="text-slate-600 font-normal">Consistent Dean's Lister</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- SECTION 7: CONTACT SECTION -->
+        <section id="contact" class="py-20 bg-surface-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="bg-white rounded-3xl p-8 sm:p-12 border border-surface-border shadow-md reveal">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                        
+                        <!-- Left Info & CTA -->
+                        <div class="lg:col-span-7">
+                            <span class="text-xs font-bold uppercase tracking-widest text-accent-blue block mb-3">CONTACT</span>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight mb-4">
+                                Let's Work Together
+                            </h2>
+                            <p class="text-surface-muted text-base leading-relaxed mb-8 max-w-lg text-justify">
+                                I'm looking forward to connecting with businesses and teams that need reliable administrative support. Feel free to reach out!
+                            </p>
+                            
+                            <!-- Action Buttons -->
+                            <div class="flex flex-wrap items-center gap-4">
+                                <a href="mailto:aiamroxas.cpe@gmail.com" class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-navy-900 hover:bg-navy-800 text-white font-semibold text-sm transition-all shadow-md active:scale-95 hover:-translate-y-0.5">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                    Email Me
+                                </a>
+                                <a href="https://linkedin.com/in/aiamairronroxas" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-navy-900 font-semibold text-sm border border-surface-border shadow-xs transition-all active:scale-95 hover:-translate-y-0.5">
+                                    <svg class="w-4 h-4 text-accent-blue" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.72a1.47 1.47 0 1 0 0 2.94 1.47 1.47 0 0 0 0-2.94Z"/></svg>
+                                    LinkedIn
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Right Contact Details Box -->
+                        <div class="lg:col-span-5">
+                            <div class="bg-surface-bg rounded-2xl p-6 border border-surface-border space-y-6">
+                                
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-blue-50 text-accent-blue flex items-center justify-center shrink-0">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                    </div>
+                                    <div>
+                                        <span class="text-[11px] font-bold tracking-widest uppercase text-surface-muted block mb-1">EMAIL</span>
+                                        <a href="mailto:aiamroxas.cpe@gmail.com" class="text-sm font-semibold text-navy-900 hover:text-accent-blue transition-colors">
+                                            aiamroxas.cpe@gmail.com
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-slate-200 pt-6 flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-blue-50 text-accent-blue flex items-center justify-center shrink-0">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.72a1.47 1.47 0 1 0 0 2.94 1.47 1.47 0 0 0 0-2.94Z"/></svg>
+                                    </div>
+                                    <div>
+                                        <span class="text-[11px] font-bold tracking-widest uppercase text-surface-muted block mb-1">LINKEDIN</span>
+                                        <a href="https://linkedin.com/in/aiamairronroxas" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-navy-900 hover:text-accent-blue transition-colors">
+                                            linkedin.com/in/aiamairronroxas
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-slate-200 pt-6 flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-blue-50 text-accent-blue flex items-center justify-center shrink-0">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                    </div>
+                                    <div>
+                                        <span class="text-[11px] font-bold tracking-widest uppercase text-surface-muted block mb-1">LOCATION</span>
+                                        <p class="text-sm font-semibold text-navy-900">
+                                            Santa Maria, Bulacan, Philippines
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-surface-border py-10 text-xs text-surface-muted">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div>
+                <p class="font-bold text-navy-900 text-sm">Aiam Airron Roxas</p>
+                <p>General / Administrative Virtual Assistant</p>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <a href="mailto:aiamroxas.cpe@gmail.com" class="hover:text-accent-blue transition-colors flex items-center gap-1.5">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    Email
+                </a>
+                <a href="https://linkedin.com/in/aiamairronroxas" target="_blank" rel="noopener noreferrer" class="hover:text-accent-blue transition-colors flex items-center gap-1.5">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.72a1.47 1.47 0 1 0 0 2.94 1.47 1.47 0 0 0 0-2.94Z"/></svg>
+                    LinkedIn
+                </a>
+            </div>
+
+            <div>
+                <p>© 2026 Aiam Airron Roxas. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-white border border-surface-border shadow-lg flex items-center justify-center text-navy-900 opacity-0 pointer-events-none transition-all duration-300 hover:bg-slate-50 hover:scale-105 active:scale-95" aria-label="Back to Top">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+    </button>
+
+    <!-- EMBEDDED JAVASCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const closeIcon = document.getElementById('close-icon');
+            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                const isOpen = !mobileMenu.classList.contains('hidden');
+                if (isOpen) {
+                    mobileMenu.classList.add('hidden');
+                    hamburgerIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                } else {
+                    mobileMenu.classList.remove('hidden');
+                    hamburgerIcon.classList.add('hidden');
+                    closeIcon.classList.remove('hidden');
+                }
+            });
+
+            // Close mobile menu on link click
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    hamburgerIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                });
+            });
+
+            // Reveal on scroll observer
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            revealElements.forEach(el => observer.observe(el));
+
+            // Back to top button visibility
+            const backToTopBtn = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                    backToTopBtn.classList.add('opacity-100', 'pointer-events-auto');
+                } else {
+                    backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                    backToTopBtn.classList.remove('opacity-100', 'pointer-events-auto');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Active nav link highlight on scroll
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 120;
+                    const sectionHeight = section.clientHeight;
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
